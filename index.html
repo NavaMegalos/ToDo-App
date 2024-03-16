@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <title>Todo app</title>
+
+</head>
+
+<body>
+  <main>
+    <header>
+      <h1>Todo</h1>
+      <input id="theme" type="checkbox">
+    </header>
+
+    <form onsubmit="e => event.preventDefault()">
+      <input type="text">
+    </form>
+
+    <section class="tasks">
+      <table class="tasks__table">
+        <tbody class="tasks__list">
+          <tr>
+            <td>
+              <input type="checkbox" name="" id="">
+              <p class="task__description"></p>
+              <!-- <button class="delete" onmouseenter="showDeleteButton()"></button> -->
+            </td>
+          </tr>
+
+        </tbody>
+        <thead>
+          <th>5 items left</th>
+          <th>All</th>
+          <th>Active</th>
+          <th>Completed</th>
+          <th>Clear Completed</th>
+        </thead>
+      </table>
+
+
+    </section>
+  </main>
+  <!-- Add dynamic number --> items left
+
+  All
+  Active
+  Completed
+
+  Clear Completed
+
+  Drag and drop to reorder list
+
+</body>
+
+</html>
