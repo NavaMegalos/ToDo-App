@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
   <meta charset="UTF-8">
@@ -7,47 +7,60 @@
   <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+    rel="stylesheet">
   <title>Todo app</title>
-
 </head>
 
 <body>
-  <main>
-    <header>
-      <h1>Todo</h1>
-      <input id="theme" type="checkbox">
+  <main class="app__main">
+    <header class="app__header">
+      <h1 class="title">Todo</h1>
+      <label for="theme">
+        <img id="theme-icon" src="./images/icon-sun.svg" alt="theme switch">
+        <input id="theme" type="checkbox" aria-label="Change the theme" data-theme-toggle onclick="toggleTheme()">
+      </label>
     </header>
 
-    <form onsubmit="e => event.preventDefault()">
-      <input type="text">
+    <form class="app__form" onsubmit="e => event.preventDefault()">
+      <input id="new_todo" type="text" aria-label="Create new todo" placeholder="Create a new todo...">
+      <span class="dot"></span>
     </form>
 
     <section class="tasks">
-      <table class="tasks__table">
-        <tbody class="tasks__list">
-          <tr>
-            <td>
-              <input type="checkbox" name="" id="">
-              <p class="task__description"></p>
-              <!-- <button class="delete" onmouseenter="showDeleteButton()"></button> -->
-            </td>
-          </tr>
-
-        </tbody>
-        <thead>
-          <th>5 items left</th>
-          <th>All</th>
-          <th>Active</th>
-          <th>Completed</th>
-          <th>Clear Completed</th>
-        </thead>
-      </table>
-
-
+      <div id="tasks_container" class="tasks__list">
+        <div class="task" draggable="true" ondragover="taskDragOver(event)" ondrop="taskDrop(event)">
+          <input type="text" name="task-description" value="Jog around the park 1x"">
+              <span class="dot"></span>
+          <!-- <button class="delete" onmouseenter="showDeleteButton()"></button> -->
+        </div>
+        <div class="task" draggable="true" ondragover="taskDragOver(event)" ondrop="taskDrop(event)">
+          <input type="text" name="task-description" value="Jog around the park 2x"">
+              <span class="dot"></span>
+          <!-- <button class="delete" onmouseenter="showDeleteButton()"></button> -->
+        </div>
+        <div class="task" draggable="true" ondragover="taskDragOver(event)" ondrop="taskDrop(event)">
+          <input type="text" name="task-description" value="Jog around the park 3x"">
+              <span class="dot"></span>
+          <!-- <button class="delete" onmouseenter="showDeleteButton()"></button> -->
+        </div>
+      </div>
+      <div class="tasks__sections">
+        <ul class="tasks__sections-items">
+          <li>5 items left</li>
+          <li>All</li>
+          <li>Active</li>
+          <li>Completed</li>
+          <li>Clear Completed</li>
+        </ul>
+      </div>
     </section>
   </main>
-  <!-- Add dynamic number --> items left
+  <!-- Add dynamic number -->
+  <!-- items left
 
   All
   Active
@@ -55,8 +68,9 @@
 
   Clear Completed
 
-  Drag and drop to reorder list
+  Drag and drop to reorder list -->
 
+  <script src="./js/main.js" defer></script>
 </body>
 
 </html>
