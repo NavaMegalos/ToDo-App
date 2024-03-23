@@ -25,7 +25,7 @@
       </label>
     </header>
 
-    <form class="app__form" onsubmit="e => event.preventDefault()">
+    <form class="app__form" onsubmit="createTodo( event )">
       <span class="dot"></span>
       <input id="new_todo" type="text" aria-label="Create new todo" placeholder="Create a new todo...">
     </form>
@@ -33,21 +33,21 @@
     <section class="todos">
       <div id="todo_container" class="todo__list">
         <div class="todo" draggable="true">
-          <span class="dot"></span>
+          <span class="dot" onclick="markTodoAsCompleted(this)"></span>
           <input disabled type="text" name="task-description" value="Jog around the park 1x"">
-          <span class="close"></span>
+          <span class="close" onclick="deleteTodo(this)"></span>
           <!-- <button class="delete" onmouseenter="showDeleteButton()"></button> -->
         </div>
         <div class="todo" draggable="true">
-          <span class="dot"></span>
+          <span class="dot" onclick="markTodoAsCompleted(this)"></span>
           <input disabled type="text" name="task-description" value="Jog around the park 2x"">
-          <span class="close"></span>
+          <span class="close" onclick="deleteTodo(this)"></span>
           <!-- <button class="delete" onmouseenter="showDeleteButton()"></button> -->
         </div>
         <div class="todo" draggable="true">
-          <span class="dot"></span>
+          <span class="dot" onclick="markTodoAsCompleted(this)"></span>
           <input disabled type="text" name="task-description" value="Jog around the park 3x"">
-          <span class="close"></span>
+          <span class="close" onclick="deleteTodo(this)"></span>
           <!-- <button class="delete" onmouseenter="showDeleteButton()"></button> -->
         </div>
       </div>

@@ -124,6 +124,36 @@ label[for="theme"] img {
     gap: .8rem;
 }
 
+.todo.completed .dot::after {
+    background: linear-gradient(hsl(192, 100%, 67%),hsl(280, 87%, 65%));
+}
+
+.todo.completed .check-mark::after {
+    content: "\2713 ";
+    color: white;
+    position: absolute;
+    z-index: 2;
+    margin-left: 1.3rem;
+    margin-top: 17px;
+}
+
+.todo.completed input {
+    text-decoration: line-through;
+    color: #4D5067;
+}
+
+/* .check-mark::after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    content: "";
+    transform: translateX(10px) rotate(-45deg);
+    transform-origin: left bottom;
+} */
+
 .dot::after {
     content: '';
     width: 20px;

@@ -1,13 +1,14 @@
-const todoItems = document.querySelectorAll('.todo')
 const todoContainer = document.querySelector('#todo_container')
 const themeIcon = document.getElementById('theme-icon')
 const themeToggle = document.getElementById('theme')
+const newTodo = document.getElementById('new_todo')
 const systemSettingDark = window.matchMedia("(prefers-color-scheme: dark)");
+let todoItems = document.querySelectorAll('.todo')
 let localStorageTheme = localStorage.getItem("theme");
 
 
 
-function calculateSettingAsThemeString({ localStorageTheme, systemSettingDark }) {
+const calculateSettingAsThemeString = ({ localStorageTheme, systemSettingDark }) => {
     if (localStorageTheme !== null) {
         return localStorageTheme;
     }
@@ -18,6 +19,8 @@ function calculateSettingAsThemeString({ localStorageTheme, systemSettingDark })
 
     return "light";
 }
+
+
 
 const toggleTheme = () => {
     localStorageTheme = localStorage.getItem("theme")
@@ -55,6 +58,7 @@ const setDefaultPreferenceTheme = () => {
 
 
 const setTodoDraggableBehaviour = () => {
+  todoItems = document.querySelectorAll('.todo')
   todoItems.forEach(function(item) {
     item.addEventListener('dragstart', handleDragStart);
     item.addEventListener('dragover', handleDragOver);
@@ -100,6 +104,56 @@ const setTodoDraggableBehaviour = () => {
     });
     dragItem = null;
   }
+}
+
+const checkInput = () => {
+  let inputValue = newTodo.value
+  return inputValue.trim().length > 0 
+}
+
+const createNewTodoItem = () => {
+  let divTodo = document.createElement('div')
+  let inputDescription = document.createElement('input')
+  let spanDot = document.createElement('span')
+  let spanClose = document.createElement('span')
+
+  divTodo.classList.add('todo')
+  divTodo.draggable = true
+
+  spanDot.classList.add('dot')
+  spanDot.setAttribute('onclick', 'markTodoAsCompleted(this)')
+  spanClose.classList.add('close')
+  spanClose.setAttribute('onclick', 'deleteTodo(this)')
+
+  inputDescription.disabled = true
+  inputDescription.type = "text"
+  inputDescription.name = "task-description"
+  inputDescription.value = newTodo.value
+
+  divTodo.append(spanDot)
+  divTodo.append(inputDescription)
+  divTodo.append(spanClose)
+  todoContainer.append(divTodo)
+  setTodoDraggableBehaviour()
+}
+
+const createTodo = ( e ) => {
+  e.preventDefault()
+  if(checkInput()) {
+    createNewTodoItem()
+  }
+}
+
+const deleteTodo = ( todoItem ) => {
+  todoContainer.removeChild(todoItem.parentNode)
+}
+
+const markTodoAsCompleted = ( todoItem ) => {
+  let spanCheckMark = document.createElement('span')
+  
+  spanCheckMark.classList.add('check-mark')
+  todoItem.append(spanCheckMark)
+  todoItem.parentNode.classList.add('completed')
 }
 
 setDefaultPreferenceTheme()
