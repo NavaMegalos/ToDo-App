@@ -1,5 +1,5 @@
-const tasks = document.getElementsByClassName('task')
-const tasksContainer = document.getElementById('tasks_container')
+const todoItems = document.querySelectorAll('.todo')
+const todoContainer = document.querySelector('#todo_container')
 const themeIcon = document.getElementById('theme-icon')
 const themeToggle = document.getElementById('theme')
 const systemSettingDark = window.matchMedia("(prefers-color-scheme: dark)");
@@ -53,23 +53,54 @@ const setDefaultPreferenceTheme = () => {
     }
 }
 
-const taskDragOver = ( e ) => { e.preventDefault() }
-const taskDrop = ( e ) => {
-    let selected = e.target
-    let data = e.dataTransfer.getData('task')
-    tasksContainer.appendChild(document.getElementById(data))
-    selected = null
+
+const setTodoDraggableBehaviour = () => {
+  todoItems.forEach(function(item) {
+    item.addEventListener('dragstart', handleDragStart);
+    item.addEventListener('dragover', handleDragOver);
+    item.addEventListener('dragenter', handleDragEnter);
+    item.addEventListener('dragleave', handleDragLeave);
+    item.addEventListener('drop', handleDrop);
+    item.addEventListener('dragend', handleDragEnd);
+  });
+
+  let dragItem = null;
+
+  function handleDragStart(event) {
+    dragItem = this;
+    event.dataTransfer.effectAllowed = 'move';
+    event.dataTransfer.setData('text/plain', '');
+  }
+
+  function handleDragOver(event) {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = 'move';
+  }
+
+  function handleDragEnter(event) {
+    this.classList.add('over');
+  }
+
+  function handleDragLeave(event) {
+    this.classList.remove('over');
+  }
+
+  function handleDrop(event) {
+    event.preventDefault();
+    this.classList.remove('over');
+
+    if (event.target !== dragItem) {
+      this.parentNode.insertBefore(dragItem, this.nextSibling);
+    }
+  }
+
+  function handleDragEnd(event) {
+    todoItems.forEach(function(item) {
+      item.classList.remove('over');
+    });
+    dragItem = null;
+  }
 }
 
-// for(task of tasks) {
-//     task.addEventListener('dragstart', (e) => {
-//         let selected = e.target
-//         tasksContainer.addEventListener('dragover', (e) => {
-//         })
-//         tasksContainer.addEventListener("drop", (e) => {
-//         })
-
-//     })
-// }
-
 setDefaultPreferenceTheme()
+setTodoDraggableBehaviour()
