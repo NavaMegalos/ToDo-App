@@ -33,19 +33,25 @@
     <section class="todos">
       <div id="todo_container" class="todo__list">
         <div class="todo" draggable="true">
-          <span class="dot" onclick="markTodoAsCompleted(this)"></span>
+          <span class="dot" onclick="toggleTodoCompleted(this)">
+            <span class="check-mark" onclick="toggleTodoCompleted(this)"></span>
+          </span>
           <input disabled type="text" name="task-description" value="Jog around the park 1x"">
           <span class="close" onclick="deleteTodo(this)"></span>
           <!-- <button class="delete" onmouseenter="showDeleteButton()"></button> -->
         </div>
         <div class="todo" draggable="true">
-          <span class="dot" onclick="markTodoAsCompleted(this)"></span>
+          <span class="dot" onclick="toggleTodoCompleted(this)">
+            <span class="check-mark" onclick="toggleTodoCompleted(this)"></span>
+          </span>
           <input disabled type="text" name="task-description" value="Jog around the park 2x"">
           <span class="close" onclick="deleteTodo(this)"></span>
           <!-- <button class="delete" onmouseenter="showDeleteButton()"></button> -->
         </div>
         <div class="todo" draggable="true">
-          <span class="dot" onclick="markTodoAsCompleted(this)"></span>
+          <span class="dot" onclick="toggleTodoCompleted(this)">
+            <span class="check-mark" onclick="toggleTodoCompleted(this)"></span>
+          </span>
           <input disabled type="text" name="task-description" value="Jog around the park 3x"">
           <span class="close" onclick="deleteTodo(this)"></span>
           <!-- <button class="delete" onmouseenter="showDeleteButton()"></button> -->

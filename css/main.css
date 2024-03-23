@@ -128,6 +128,10 @@ label[for="theme"] img {
     background: linear-gradient(hsl(192, 100%, 67%),hsl(280, 87%, 65%));
 }
 
+.todo .check-mark::after {
+    display: none;
+}
+
 .todo.completed .check-mark::after {
     content: "\2713 ";
     color: white;
@@ -135,6 +139,7 @@ label[for="theme"] img {
     z-index: 2;
     margin-left: 1.3rem;
     margin-top: 17px;
+    display: block;
 }
 
 .todo.completed input {

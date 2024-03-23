@@ -116,20 +116,25 @@ const createNewTodoItem = () => {
   let inputDescription = document.createElement('input')
   let spanDot = document.createElement('span')
   let spanClose = document.createElement('span')
+  let spanCheckMark = document.createElement('span')
 
   divTodo.classList.add('todo')
   divTodo.draggable = true
 
   spanDot.classList.add('dot')
-  spanDot.setAttribute('onclick', 'markTodoAsCompleted(this)')
+  spanDot.setAttribute('onclick', 'toggleTodoCompleted(this)')
   spanClose.classList.add('close')
   spanClose.setAttribute('onclick', 'deleteTodo(this)')
+  spanClose.classList.add('close')
+  spanCheckMark.setAttribute('onclick', 'toggleTodoCompleted(this)')
+  spanCheckMark.classList.add('check-mark')
 
   inputDescription.disabled = true
   inputDescription.type = "text"
   inputDescription.name = "task-description"
   inputDescription.value = newTodo.value
 
+  spanDot.appendChild(spanCheckMark)
   divTodo.append(spanDot)
   divTodo.append(inputDescription)
   divTodo.append(spanClose)
@@ -148,12 +153,8 @@ const deleteTodo = ( todoItem ) => {
   todoContainer.removeChild(todoItem.parentNode)
 }
 
-const markTodoAsCompleted = ( todoItem ) => {
-  let spanCheckMark = document.createElement('span')
-  
-  spanCheckMark.classList.add('check-mark')
-  todoItem.append(spanCheckMark)
-  todoItem.parentNode.classList.add('completed')
+const toggleTodoCompleted = ( todoItem ) => {
+  todoItem.parentNode.classList.toggle('completed')
 }
 
 setDefaultPreferenceTheme()
