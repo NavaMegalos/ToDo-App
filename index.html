@@ -25,31 +25,40 @@
       </label>
     </header>
 
-    <form class="app__form" onsubmit="e => event.preventDefault()">
-      <input id="new_todo" type="text" aria-label="Create new todo" placeholder="Create a new todo...">
+    <form class="app__form" onsubmit="createTodo( event )">
       <span class="dot"></span>
+      <input id="new_todo" type="text" aria-label="Create new todo" placeholder="Create a new todo...">
     </form>
 
-    <section class="tasks">
-      <div id="tasks_container" class="tasks__list">
-        <div class="task" draggable="true" ondragover="taskDragOver(event)" ondrop="taskDrop(event)">
-          <input type="text" name="task-description" value="Jog around the park 1x"">
-              <span class="dot"></span>
+    <section class="todos">
+      <div id="todo_container" class="todo__list">
+        <div class="todo" draggable="true">
+          <span class="dot" onclick="toggleTodoCompleted(this)">
+            <span class="check-mark" onclick="toggleTodoCompleted(this)"></span>
+          </span>
+          <input disabled type="text" name="task-description" value="Jog around the park 1x"">
+          <span class="close" onclick="deleteTodo(this)"></span>
           <!-- <button class="delete" onmouseenter="showDeleteButton()"></button> -->
         </div>
-        <div class="task" draggable="true" ondragover="taskDragOver(event)" ondrop="taskDrop(event)">
-          <input type="text" name="task-description" value="Jog around the park 2x"">
-              <span class="dot"></span>
+        <div class="todo" draggable="true">
+          <span class="dot" onclick="toggleTodoCompleted(this)">
+            <span class="check-mark" onclick="toggleTodoCompleted(this)"></span>
+          </span>
+          <input disabled type="text" name="task-description" value="Jog around the park 2x"">
+          <span class="close" onclick="deleteTodo(this)"></span>
           <!-- <button class="delete" onmouseenter="showDeleteButton()"></button> -->
         </div>
-        <div class="task" draggable="true" ondragover="taskDragOver(event)" ondrop="taskDrop(event)">
-          <input type="text" name="task-description" value="Jog around the park 3x"">
-              <span class="dot"></span>
+        <div class="todo" draggable="true">
+          <span class="dot" onclick="toggleTodoCompleted(this)">
+            <span class="check-mark" onclick="toggleTodoCompleted(this)"></span>
+          </span>
+          <input disabled type="text" name="task-description" value="Jog around the park 3x"">
+          <span class="close" onclick="deleteTodo(this)"></span>
           <!-- <button class="delete" onmouseenter="showDeleteButton()"></button> -->
         </div>
       </div>
-      <div class="tasks__sections">
-        <ul class="tasks__sections-items">
+      <div class="todos__sections">
+        <ul class="todos__sections-items">
           <li>5 items left</li>
           <li>All</li>
           <li>Active</li>
