@@ -32,38 +32,38 @@
 
     <section class="todos">
       <div id="todo_container" class="todo__list">
-        <div class="todo" draggable="true">
+        <!-- <div class="todo" draggable="true">
           <span class="dot" onclick="toggleTodoCompleted(this)">
             <span class="check-mark" onclick="toggleTodoCompleted(this)"></span>
           </span>
           <input disabled type="text" name="task-description" value="Jog around the park 1x"">
-          <span class="close" onclick="deleteTodo(this)"></span>
+          <span class="close" onclick="deleteTodo(this)"></span> -->
           <!-- <button class="delete" onmouseenter="showDeleteButton()"></button> -->
-        </div>
-        <div class="todo" draggable="true">
+        <!-- </div> -->
+        <!-- <div class="todo" draggable="true">
           <span class="dot" onclick="toggleTodoCompleted(this)">
             <span class="check-mark" onclick="toggleTodoCompleted(this)"></span>
           </span>
           <input disabled type="text" name="task-description" value="Jog around the park 2x"">
-          <span class="close" onclick="deleteTodo(this)"></span>
+          <span class="close" onclick="deleteTodo(this)"></span> -->
           <!-- <button class="delete" onmouseenter="showDeleteButton()"></button> -->
-        </div>
+        <!-- </div>
         <div class="todo" draggable="true">
           <span class="dot" onclick="toggleTodoCompleted(this)">
             <span class="check-mark" onclick="toggleTodoCompleted(this)"></span>
           </span>
           <input disabled type="text" name="task-description" value="Jog around the park 3x"">
-          <span class="close" onclick="deleteTodo(this)"></span>
+          <span class="close" onclick="deleteTodo(this)"></span> -->
           <!-- <button class="delete" onmouseenter="showDeleteButton()"></button> -->
-        </div>
+        <!-- </div> -->
       </div>
       <div class="todos__sections">
-        <ul class="todos__sections-items">
-          <li>5 items left</li>
-          <li>All</li>
-          <li>Active</li>
-          <li>Completed</li>
-          <li>Clear Completed</li>
+        <ul class="todos__sections-items grid">
+          <li class="grid-item grid-item-1" id="todos-on-page">5 items left</li>
+          <li class="grid-item grid-item-2" id="all-todos">All</li>
+          <li class="grid-item grid-item-3" id="active-todos">Active</li>
+          <li class="grid-item grid-item-4" id="completed-todos">Completed</li>
+          <li class="grid-item grid-item-5" id="clear-completed-todos">Clear Completed</li>
         </ul>
       </div>
     </section>
