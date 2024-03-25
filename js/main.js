@@ -1,10 +1,40 @@
 const todoContainer = document.querySelector('#todo_container')
 const themeIcon = document.getElementById('theme-icon')
 const themeToggle = document.getElementById('theme')
+const qntyTodosOnPage = document.getElementById('todos-on-page')
+const showAllTodos = document.getElementById('all-todos')
+const showCompletedTodos = document.getElementById('completed-todos')
+const showActiveTodos = document.getElementById('active-todos')
+const clearCompletedTodos = document.getElementById('clear-completed-todos')
 const newTodo = document.getElementById('new_todo')
 const systemSettingDark = window.matchMedia("(prefers-color-scheme: dark)");
 let todoItems = document.querySelectorAll('.todo')
 let localStorageTheme = localStorage.getItem("theme");
+let count = 0
+let todos = [
+  {
+    id: count,
+    checked: false,
+    description: "Algo para mostrar 1"
+  },
+]
+
+count ++
+
+todos.push({
+    id: count,
+    checked: false,
+    description: "Algo para mostrar 2"
+})
+
+count ++
+// {
+//   1: {
+//     checked: 'true',
+//     description: 'Algo para hacer actualmente'
+//   },
+
+// }
 
 
 
@@ -28,9 +58,9 @@ const toggleTheme = () => {
     const newTheme = currentThemeSetting === "dark" ? "light" : "dark";
     
     if (themeToggle.checked) {
-        themeIcon.src = "../images/icon-sun.svg"
+      themeIcon.src = "../images/icon-moon.svg"
     } else if (!themeToggle.checked) {
-        themeIcon.src = "../images/icon-moon.svg"
+      themeIcon.src = "../images/icon-sun.svg"
     }
 
     document.querySelector("html").setAttribute("data-theme", newTheme);
@@ -47,11 +77,11 @@ const setDefaultPreferenceTheme = () => {
         document.querySelector("html").setAttribute("data-theme", localStorageTheme);
     }
     if(localStorageTheme && localStorageTheme == 'dark') {
-        themeIcon.src = "../images/icon-moon.svg"
-        themeToggle.checked = false
+      themeIcon.src = "../images/icon-sun.svg"
+      themeToggle.checked = false
     }
     else if(localStorageTheme && localStorageTheme == 'light') {
-        themeIcon.src = "../images/icon-sun.svg"
+      themeIcon.src = "../images/icon-moon.svg"
         themeToggle.checked = true
     }
 }
@@ -111,7 +141,11 @@ const checkInput = () => {
   return inputValue.trim().length > 0 
 }
 
-const createNewTodoItem = () => {
+const cleanInput = () => {
+  newTodo.value = ""
+}
+
+const createNewTodoItem = ( id, checked, description ) => {
   let divTodo = document.createElement('div')
   let inputDescription = document.createElement('input')
   let spanDot = document.createElement('span')
@@ -119,6 +153,7 @@ const createNewTodoItem = () => {
   let spanCheckMark = document.createElement('span')
 
   divTodo.classList.add('todo')
+  divTodo.id = id
   divTodo.draggable = true
 
   spanDot.classList.add('dot')
@@ -132,20 +167,26 @@ const createNewTodoItem = () => {
   inputDescription.disabled = true
   inputDescription.type = "text"
   inputDescription.name = "task-description"
-  inputDescription.value = newTodo.value
+  inputDescription.value = description
 
   spanDot.appendChild(spanCheckMark)
   divTodo.append(spanDot)
   divTodo.append(inputDescription)
   divTodo.append(spanClose)
   todoContainer.append(divTodo)
+  if(checked)
+    divTodo.classList.toggle('completed')
   setTodoDraggableBehaviour()
+  qntyTodosOnPage.innerText = todoContainer.childNodes.length
 }
 
 const createTodo = ( e ) => {
   e.preventDefault()
   if(checkInput()) {
-    createNewTodoItem()
+    todos.push({id: count, checked: false, description: newTodo.value})
+    createNewTodoItem(count, false, newTodo.value)
+    count ++
+    cleanInput()
   }
 }
 
@@ -153,9 +194,63 @@ const deleteTodo = ( todoItem ) => {
   todoContainer.removeChild(todoItem.parentNode)
 }
 
-const toggleTodoCompleted = ( todoItem ) => {
-  todoItem.parentNode.classList.toggle('completed')
+const deleteTodoAtPosition = ( todoItemPosition ) => {
+  todoContainer.removeChild()
 }
 
+const toggleTodoCompleted = ( todoItem ) => {
+  todoItem.parentNode.classList.toggle('completed')
+  if(todoItem.parentNode.classList.contains('completed')) {
+    todos.forEach( todo => {
+      if( todo.id == todoItem.parentNode.id ) {
+        todo.checked = !todo.checked
+      }
+    })
+  }else {
+    todos.forEach( todo => {
+      if( todo.id == todoItem.parentNode.id )
+        todo.checked = false
+    })
+    
+  }
+}
+
+const deleteAllChildren = () => {
+  while(todoContainer.lastChild) {
+    todoContainer.removeChild(todoContainer.lastChild)
+  }
+}
+
+const showTodos = ( items ) => {
+  deleteAllChildren()
+  if(items.length <= 0) {
+    qntyTodosOnPage.innerText = todoContainer.childNodes.length
+    return
+  }
+  items.forEach((todo) => {
+    createNewTodoItem(todo.id, todo.checked, todo.description)
+  })
+}
+
+showAllTodos.addEventListener('click', () => {
+  showTodos(todos)
+})
+
+showActiveTodos.addEventListener('click', () => {
+  const activeTodos = todos.filter( todo => !todo.checked)
+  showTodos(activeTodos)
+})
+
+showCompletedTodos.addEventListener('click', () => {
+  const completedTodos = todos.filter( todo => todo.checked)
+  showTodos(completedTodos)
+})
+
+clearCompletedTodos.addEventListener('click', () => {
+  todos = todos.filter( todo => !todo.checked)
+  showTodos(todos)
+})
+
+showTodos(todos)
 setDefaultPreferenceTheme()
 setTodoDraggableBehaviour()
