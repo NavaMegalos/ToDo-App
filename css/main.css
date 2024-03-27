@@ -11,6 +11,8 @@
     --clr-dark-grayish-blue: 236, 9%, 61%;
     --clr-very-dark-grayish-blue: 235, 19%, 35%;
 
+    --clr-pure-white: #FFF;
+    --clr--pure-black: #000;
 
     /* DARK THEME */
     --clr-very-dark-blue: 235, 21%, 11%;
@@ -32,11 +34,17 @@
 [data-theme="light"] {
     --clr-bg: var(--clr-very-light-gray);
     --img-bg: url('../images/bg-mobile-light.jpg');
+    --bg-base-color: var(--clr-pure-white);
+    --clr-new-todo: #9495A5;
+    --clr-todo-text: #494C6B;
 }
 
 [data-theme="dark"] {
     --clr-bg: var(--clr-very-dark-blue);
     --img-bg: url('../images/bg-mobile-dark.jpg');
+    --bg-base-color: var(--clr-pure-black);
+    --clr-new-todo: #767992;
+    --clr-todo-text: #C8CBE7;
 }
 
 
@@ -103,14 +111,22 @@ ul li {
     width: 100%;
 }
 
+.app__form input {
+    background-color: hsl(var(--clr-bg));
+    color: var(--clr-new-todo);
+}
+
 input {
     border: none;
     border-radius: .5rem;
     padding: 1.4rem;
     width: inherit;
-    background-color: hsl(var(--clr-very-dark-desaturated-blue));
+    background-color: var(--bg-base-color);
     text-indent: 2rem;
     position: relative;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--clr-todo-text);
 }
 
 label[for="theme"] img {
@@ -148,18 +164,6 @@ label[for="theme"] img {
     text-decoration: line-through;
     color: #4D5067;
 }
-
-/* .check-mark::after {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 3px;
-    width: 100%;
-    background-color: white;
-    content: "";
-    transform: translateX(10px) rotate(-45deg);
-    transform-origin: left bottom;
-} */
 
 .dot::after {
     content: '';
@@ -210,13 +214,15 @@ label[for="theme"] img {
 }
 
 .todos {
+    background-color: hsl(var(--clr-bg));
+    /* box-shadow: -1px 22px 34px 1px rgba(151,151,151,0.63); */
     width: 100%;
-    background-color: hsl(var(--clr-very-dark-desaturated-blue));
+    /* background-color: var(--bg-base-color); */
     border-radius: .4rem;
 }
 
 .todo {
-    border-bottom: 1px solid #393a48;
+    border-bottom: 1px solid var(--bg-base-color);
     position: relative;
 }
 
@@ -226,4 +232,13 @@ label[for="theme"] img {
 
 .todo.over {
     opacity: .4;
+}
+
+.grid .grid-item {
+    color: var(--clr-new-todo);
+}
+
+.grid {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
 }

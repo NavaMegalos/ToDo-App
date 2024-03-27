@@ -4,8 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- displays site properly based on user's device -->
-
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="./css/main.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,33 +29,8 @@
     </form>
 
     <section class="todos">
-      <div id="todo_container" class="todo__list">
-        <!-- <div class="todo" draggable="true">
-          <span class="dot" onclick="toggleTodoCompleted(this)">
-            <span class="check-mark" onclick="toggleTodoCompleted(this)"></span>
-          </span>
-          <input disabled type="text" name="task-description" value="Jog around the park 1x"">
-          <span class="close" onclick="deleteTodo(this)"></span> -->
-          <!-- <button class="delete" onmouseenter="showDeleteButton()"></button> -->
-        <!-- </div> -->
-        <!-- <div class="todo" draggable="true">
-          <span class="dot" onclick="toggleTodoCompleted(this)">
-            <span class="check-mark" onclick="toggleTodoCompleted(this)"></span>
-          </span>
-          <input disabled type="text" name="task-description" value="Jog around the park 2x"">
-          <span class="close" onclick="deleteTodo(this)"></span> -->
-          <!-- <button class="delete" onmouseenter="showDeleteButton()"></button> -->
-        <!-- </div>
-        <div class="todo" draggable="true">
-          <span class="dot" onclick="toggleTodoCompleted(this)">
-            <span class="check-mark" onclick="toggleTodoCompleted(this)"></span>
-          </span>
-          <input disabled type="text" name="task-description" value="Jog around the park 3x"">
-          <span class="close" onclick="deleteTodo(this)"></span> -->
-          <!-- <button class="delete" onmouseenter="showDeleteButton()"></button> -->
-        <!-- </div> -->
-      </div>
-      <div class="todos__sections">
+      <div id="todo_container" class="todo__list"></div>
+      <div class="todos__sections">  
         <ul class="todos__sections-items grid">
           <li class="grid-item grid-item-1" id="todos-on-page">5 items left</li>
           <li class="grid-item grid-item-2" id="all-todos">All</li>
@@ -68,17 +41,6 @@
       </div>
     </section>
   </main>
-  <!-- Add dynamic number -->
-  <!-- items left
-
-  All
-  Active
-  Completed
-
-  Clear Completed
-
-  Drag and drop to reorder list -->
-
   <script src="./js/main.js" defer></script>
 </body>
 
